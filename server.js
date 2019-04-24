@@ -101,11 +101,11 @@ app.get('/', function (req, res) {
   if (db) {
     var col = db.collection('counts');
     // Create a document with request IP and current time of request
-    col.insert({
-       name:"real",
-    temperature:32,
-    bpm:67,
-    orientation:"On Back",      } ,console.log("Done Updating"));
+    // col.insert({
+    //    name:"real",
+    // temperature:32,
+    // bpm:67,
+    // orientation:"On Back",      } ,console.log("Done Updating"));
 
     col.count(function(err, count){
       if (err) {
@@ -127,17 +127,27 @@ function espPost(req, res)  //make them write most of this
     success:true
   };
   
+  var col1 = db.collection('myCollect');
+  //Create a document with request IP and current time of request
+  col1.insert({
+     name:"real",
+  temperature:32,
+  bpm:67,
+  orientation:"On Back",      } ,console.log("Done Updating"));
+
+
+
   //console.log(req.body);
   //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
   //csv.writeToStream(fs.createWriteStream("datalog.csv"),[ [req.body.temperature, req.body.bpm,req.body.orientation,new ] ],{headers:true}).pipe(ws);
   
-  rpm.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
+  //rpm.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
     //.then(r => res.send("Message received"));
     //console.log(values);
     
 }
 
-app.post("/espPost",espPost);
+app.get("/espPost",espPost);
 
 
 
