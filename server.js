@@ -172,7 +172,7 @@ app.get('/tajay/all', function(req, res){
 });  
 
 app.get('/values', function(req, res){
-  rpm.findById({_id:"5c990ab58bab1c1ed859dc98"},function(err,docs){   res.json(docs.temperature);});} );//res.send('new hello world');
+  rpm.findOne({name:"real"},function(err,docs){   res.json(docs.temperature);});} );//res.send('new hello world');
 
 
 app.post("/espPost",bp,espPost);
