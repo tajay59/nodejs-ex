@@ -138,7 +138,7 @@ function checkData(req,res){
   //col3.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = 3200; docs.bpm = 5700;   docs.orientation = "Leftside"; docs.save(); }); //}); )
   col3.findOneAndUpdate(
     { name : "real" },
-    { $inc: { temperature : 3200, orientation : "On Leftside", bpm : 1500 } }
+    { $inc: { "temperature" : "3200", "orientation" : "On Leftside", "bpm" : "1500" } }
  )
 }
 
