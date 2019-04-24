@@ -92,7 +92,7 @@ var initDb = function(callback) {
   });
 };
 
-app.get('/tajay', function (req, res) {
+app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
