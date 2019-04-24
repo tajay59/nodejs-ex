@@ -73,14 +73,14 @@ var initDb = function(callback) {
   });
 };
 
-app.get('/tajay', function (req, res) {
+app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
     initDb(function(err){});
   }
   if (db) {
-    var col = db.collection('counting');
+    var col = db.collection('counts');
     // Create a document with request IP and current time of request
     col.insert({name: "Legendary", date: Date.now()});
     col.count(function(err, count){
