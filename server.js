@@ -92,7 +92,7 @@ var initDb = function(callback) {
   });
 };
 
-app.get('/', function (req, res) {
+app.get('/tajay', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
@@ -105,8 +105,8 @@ app.get('/', function (req, res) {
        name:"real",
     temperature:32,
     bpm:67,
-    orientation:"On Back",      });
-    
+    orientation:"On Back",      } ,console.log("Done Updating"));
+
     col.count(function(err, count){
       if (err) {
         console.log('Error running count. Message:\n'+err);
