@@ -1,3 +1,22 @@
+const mongoose = require('mongoose');
+//mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});  // create database called test
+
+//var express = require('express');
+const path = require("path");
+const bodyParser = require('body-parser');
+var fs = require('fs');
+
+var rpm = require("./Records.js");
+var csv =  require('fast-csv');
+var ws = fs.createWriteStream('datalog.csv');
+
+//var app = express();
+//app.use(express.static(path.join(__dirname,"./client")));
+
+
+
+//=======================================================================================
+
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
@@ -82,7 +101,12 @@ app.get('/', function (req, res) {
   if (db) {
     var col = db.collection('counts');
     // Create a document with request IP and current time of request
-    col.insert({name: "Legendary", date: Date.now()});
+    col.insert({
+       name:"real",
+    temperature:32,
+    bpm:67,
+    orientation:"On Back",      });
+    
     col.count(function(err, count){
       if (err) {
         console.log('Error running count. Message:\n'+err);
@@ -93,6 +117,34 @@ app.get('/', function (req, res) {
     res.render('index.html', { pageCountMessage : null});
   }
 });
+
+//=================  MY CODE ==========================
+
+function espPost(req, res)  //make them write most of this
+{
+  console.log(req.body);
+  var successMessage = {
+    success:true
+  };
+  
+  //console.log(req.body);
+  //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
+  //csv.writeToStream(fs.createWriteStream("datalog.csv"),[ [req.body.temperature, req.body.bpm,req.body.orientation,new ] ],{headers:true}).pipe(ws);
+  
+  rpm.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
+    //.then(r => res.send("Message received"));
+    //console.log(values);
+    
+}
+
+app.post("/espPost",espPost);
+
+
+
+
+// ====================================================================================
+
+
 
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
