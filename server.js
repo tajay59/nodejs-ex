@@ -155,18 +155,24 @@ function espPost(req, res)  //make them write most of this
   
   var col2 = db.collection('data');
 
-
+  
 
   //console.log(req.body);
   //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
   //csv.writeToStream(fs.createWriteStream("datalog.csv"),[ [req.body.temperature, req.body.bpm,req.body.orientation,new ] ],{headers:true}).pipe(ws);
-  col2.findOneAndUpdate({name:"real"},{$set:{"temperature":req.body.temperature,"bpm":req.body.bpm,"orientation":req.body.orientation}})
+  col2.findOneAndUpdate({name:"real"},{$set:{temperature:req.body.temperature,bpm:req.body.bpm,orientation:req.body.orientation}})
   //col2.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
     //.then(r => res.send("Message received"));
     //console.log(values);
     
 }
 
+app.get('/tajay/all', function(req, res){
+  rpm.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
+});  
+
+app.get('/values', function(req, res){
+  rpm.findById({_id:"5c990ab58bab1c1ed859dc98"},function(err,docs){   res.json(docs.temperature);});} );//res.send('new hello world');
 
 
 app.post("/espPost",bp,espPost);
