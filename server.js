@@ -154,7 +154,7 @@ function espPost(req, res)  //make them write most of this
     
 }
 
-app.get("/espPost",espPost);
+app.post("/espPost",espPost);
 
 app.get("/create",createData);
 
