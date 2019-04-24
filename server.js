@@ -135,8 +135,11 @@ function checkData(req,res){
   var col3 = db.collection('data');
   //Create a document with request IP and current time of request
 
-  col3.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = 3200; docs.bpm = 5700;   docs.orientation = "Leftside"; docs.save(); }); //}); )
-   
+  //col3.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = 3200; docs.bpm = 5700;   docs.orientation = "Leftside"; docs.save(); }); //}); )
+  col3.findOneAndUpdate(
+    { name : "real" },
+    { $inc: { temperature : 3200, orientation : "On Leftside", bpm : 1500 } }
+ )
 }
 
 function espPost(req, res)  //make them write most of this
