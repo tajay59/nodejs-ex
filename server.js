@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //var express = require('express');
 const path = require("path");
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var fs = require('fs');
 
 var rpm = require("./Records.js");
@@ -13,8 +13,8 @@ var ws = fs.createWriteStream('datalog.csv');
 //var app = express();
 //app.use(express.static(path.join(__dirname,"./client")));
 
-
-
+//app.use(bodyParser.urlencoded({ extended: false }));
+var bp = bodyParser.urlencoded({ extended: false });
 //=======================================================================================
 
 //  OpenShift sample Node application
@@ -135,6 +135,7 @@ function createData(req,res){
 
 function espPost(req, res)  //make them write most of this
 {
+
   console.log(req.body);
   var successMessage = {
     success:true
@@ -154,7 +155,7 @@ function espPost(req, res)  //make them write most of this
     
 }
 
-app.post("/espPost",espPost);
+app.post("/espPost",bp,espPost);
 
 app.get("/create",createData);
 
