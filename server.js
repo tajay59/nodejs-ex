@@ -160,8 +160,8 @@ function espPost(req, res)  //make them write most of this
   //console.log(req.body);
   //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
   //csv.writeToStream(fs.createWriteStream("datalog.csv"),[ [req.body.temperature, req.body.bpm,req.body.orientation,new ] ],{headers:true}).pipe(ws);
-  
-  col2.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
+  col2.findOneAndUpdate({name:"real"},{$set:{"temperature":req.body.temperature,"bpm":req.body.bpm,"orientation":req.body.orientation}})
+  //col2.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
     //.then(r => res.send("Message received"));
     //console.log(values);
     
