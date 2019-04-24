@@ -136,10 +136,13 @@ function checkData(req,res){
   //Create a document with request IP and current time of request
 
   //col3.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = 3200; docs.bpm = 5700;   docs.orientation = "Leftside"; docs.save(); }); //}); )
-  col3.findOneAndUpdate(
-    { "name" : "real" },
-    { $inc: { "temperature" : "3200", "orientation" : "On Leftside", "bpm" : "1500" } }
- )
+//   col3.findOneAndUpdate(
+//     { "name" : "real" },
+//     { $inc: { "temperature" : "3200", "orientation" : "On Leftside", "bpm" : "1500" } }
+//  )
+
+ col3.findOneAndUpdate({name:"real"},{$set:{"temperature":90,"bpm":620085969,"orientation":"Leftside"}})
+ //db.data.findOneAndUpdate({name:"real"},{$set:{"temperature":1600,"bpm":156,"orientation":"Rightside"}})
 }
 
 function espPost(req, res)  //make them write most of this
