@@ -120,14 +120,8 @@ app.get('/', function (req, res) {
 
 //=================  MY CODE ==========================
 
-function espPost(req, res)  //make them write most of this
-{
-  console.log(req.body);
-  var successMessage = {
-    success:true
-  };
-  
-  var col1 = db.collection('myCollect');
+function createData(req,res){
+  var col1 = db.collection('data');
   //Create a document with request IP and current time of request
   col1.insert({
      name:"real",
@@ -135,13 +129,26 @@ function espPost(req, res)  //make them write most of this
   bpm:67,
   orientation:"On Back",      } ,console.log("Done Updating"));
 
+}
+
+
+
+function espPost(req, res)  //make them write most of this
+{
+  console.log(req.body);
+  var successMessage = {
+    success:true
+  };
+  
+  var col2 = db.collection('data');
+
 
 
   //console.log(req.body);
   //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
   //csv.writeToStream(fs.createWriteStream("datalog.csv"),[ [req.body.temperature, req.body.bpm,req.body.orientation,new ] ],{headers:true}).pipe(ws);
   
-  //rpm.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
+  col2.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
     //.then(r => res.send("Message received"));
     //console.log(values);
     
@@ -149,7 +156,7 @@ function espPost(req, res)  //make them write most of this
 
 app.get("/espPost",espPost);
 
-
+app.get("/create",createData);
 
 
 // ====================================================================================
