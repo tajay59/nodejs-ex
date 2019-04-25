@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});  // create database called test
-var request = require('request');
+//var request = require('request');
 //var express = require('express');
 const path = require("path");
 var bodyParser = require('body-parser');
@@ -153,13 +153,13 @@ function espPost(req, res)  //make them write most of this
   console.log(req.body);
 
 
-request.post({
-  headers: {'content-type' : 'application/x-www-form-urlencoded'},
-  url:     'http://nodejs-mongo-persistent-rpm.1d35.starter-us-east-1.openshiftapps.com/espPost',
-  body:    "name=real&temperature="+req.body.temperature+"&bpm="+req.body.bpm+"&orientation="+req.body.orientation
-}, function(error, response, body){
-  console.log(body);
-});
+// request.post({
+//   headers: {'content-type' : 'application/x-www-form-urlencoded'},
+//   url:     'http://nodejs-mongo-persistent-rpm.1d35.starter-us-east-1.openshiftapps.com/espPost',
+//   body:    "name=real&temperature="+req.body.temperature+"&bpm="+req.body.bpm+"&orientation="+req.body.orientation
+// }, function(error, response, body){
+//   console.log(body);
+// });
 
 
 
