@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});  // create database called test
-
+var request = require('request');
 //var express = require('express');
 const path = require("path");
 var bodyParser = require('body-parser');
@@ -9,7 +9,9 @@ var fs = require('fs');
 var rpm = require("./Records.js");
 var csv =  require('fast-csv');
 var ws = fs.createWriteStream('datalog.csv');
-
+var temp = 0;
+var orient = "none"
+var bpms = 0;
 //var app = express();
 //app.use(express.static(path.join(__dirname,"./client")));
 
@@ -27,7 +29,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || '1025',
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
@@ -149,6 +151,20 @@ function espPost(req, res)  //make them write most of this
 {
 
   console.log(req.body);
+
+
+request.post({
+  headers: {'content-type' : 'application/x-www-form-urlencoded'},
+  url:     'http://nodejs-mongo-persistent-rpm.1d35.starter-us-east-1.openshiftapps.com/espPost',
+  body:    "name=real&temperature="+req.body.temperature+"&bpm="+req.body.bpm+"&orientation="+req.body.orientation
+}, function(error, response, body){
+  console.log(body);
+});
+
+
+
+
+
   var successMessage = {
     success:true
   };
@@ -168,7 +184,8 @@ function espPost(req, res)  //make them write most of this
 }
 
 app.get('/tajay/all', function(req, res){
-  rpm.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
+  var col4 = db.collection('data');
+  col4.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
 app.get('/values', function(req, res){
