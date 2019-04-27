@@ -303,8 +303,8 @@ body  {
         
   
       // });
-      fg1(temp );
-      console.log("temp outside is :"+temp);
+      fg1(temp);
+      
     },1000);
    
   });
@@ -357,7 +357,8 @@ body  {
                 var series = this.series[0];
                 setInterval(function () {
                     var x = (new Date()).getTime(), // current time
-                        y = value    //Math.random();
+                        y = temp    //Math.random();
+                        console.log("temp outside is :"+temp);
                     series.addPoint([x, y], true, true);
                 }, 1000);
             }
