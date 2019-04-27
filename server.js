@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});  // create database called test
-var request = require('request');
+//var request = require('request');
 //var express = require('express');
 const path = require("path");
 var bodyParser = require('body-parser');
