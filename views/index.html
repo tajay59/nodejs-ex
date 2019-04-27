@@ -104,9 +104,9 @@ body  {
     
     
     
-  </div>
+  
 
-  <div class="w3-main" style="margin-left:150px;margin-top:43px;">
+  <div class="w3-main" ></div>
 
   <div class="w3-row-padding w3-margin-bottom"  ng-controller ="myCtrl">
     <div class="w3-quarter">
@@ -152,7 +152,7 @@ body  {
   </div>
 </div>
 
-<div id="container1" style = "margin-left:165px;margin-right:15px"></div>
+<div id="container1" ></div>
 
 
 
@@ -272,6 +272,9 @@ body  {
   <!-- End Contact Section -->
   </div>
   
+
+</div>
+
     <!-- Footer -->
   <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -294,20 +297,7 @@ body  {
 var value = 0;
 var app = angular.module("myApp1",[]);
 
-app.controller("myCtrl1",function($scope,$http,$interval){
-   
 
-  $interval(function(){
-
-    //fg1(value );
-
-  },1000);
-
-  
-  
-
-  
-});
 
 app.controller("myCtrl",function($scope,$http,$interval){
    
@@ -317,7 +307,7 @@ app.controller("myCtrl",function($scope,$http,$interval){
       .then(function(response) {
         //console.log(response.data);
         
-        console.log(response.data);
+        
       
         $scope.name = response.data.temperature;//parseInt(response.data.temperature);
         value = parseFloat(response.data.temperature, 10);
@@ -339,9 +329,6 @@ app.controller("myCtrl",function($scope,$http,$interval){
 
 
 
-// function fg1(req){
-//   value = req ;}
-
 
 
 Highcharts.chart('container1', {
@@ -357,7 +344,7 @@ Highcharts.chart('container1', {
               setInterval(function () {
                   var x = (new Date()).getTime(), // current time
                       y = value    //Math.random();
-                      console.log("value is "+value);
+                      
                   series.addPoint([x, y], true, true);
               }, 1000);
           }
