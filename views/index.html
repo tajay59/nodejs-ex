@@ -303,7 +303,7 @@ body  {
         
   
       // });
-      fg1();
+      fg1(temp);
       
     },1000);
    
@@ -340,8 +340,8 @@ body  {
   
   
   
-  function fg1(){
-    
+  function fg1(ans){
+    ans = temp;
   
   
   
@@ -357,8 +357,8 @@ body  {
                 var series = this.series[0];
                 setInterval(function () {
                     var x = (new Date()).getTime(), // current time
-                        y = temp    //Math.random();
-                        console.log("temp outside is :"+temp);
+                        y = ans    //Math.random();
+                        console.log("ans outside is :"+ans);
                     series.addPoint([x, y], true, true);
                 }, 1000);
             }
