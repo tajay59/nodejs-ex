@@ -10,18 +10,11 @@ app.controller("myCtrl1",function($scope,$http,$interval){
     .then(function(response) {
       //console.log(response.data);
       fg1(response.data );
-   
-       
 
     });
 
-
   },1000);
-
-  
-  
-
-  
+ 
 });
 
 app.controller("myCtrl",function($scope,$http,$interval){
@@ -30,7 +23,7 @@ app.controller("myCtrl",function($scope,$http,$interval){
     $interval(function(){
       $http.get("/tajay/all")
       .then(function(response) {
-        //console.log(response.data);
+        console.log(response.data);
         
         console.log(response.data);
       
