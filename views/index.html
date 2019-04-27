@@ -357,6 +357,7 @@ Highcharts.chart('container1', {
               setInterval(function () {
                   var x = (new Date()).getTime(), // current time
                       y = value    //Math.random();
+                      console.log("value is "+value);
                   series.addPoint([x, y], true, true);
               }, 1000);
           }
