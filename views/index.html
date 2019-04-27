@@ -108,7 +108,7 @@ body  {
 
   <div class="w3-main" ></div>
 
-  <div class="w3-row-padding w3-margin-bottom"  ng-controller ="myCtrl">
+  <div class="w3-row-padding w3-margin-bottom"  > <!-- ng-controller ="myCtrl" -->
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
@@ -300,7 +300,7 @@ var app = angular.module("myApp1",[]);
 
 
 
-app.controller("myCtrl",function($scope,$http,$interval){
+app.controller("myCtrl1",function($scope,$http,$interval){
    
 
     $interval(function(){
@@ -391,7 +391,7 @@ Highcharts.chart('container1', {
               time = (new Date()).getTime(),
               i;
 
-          for (i = -19; i <= 0; i += 1) {
+          for (i = -190; i <= 0; i += 1) {
               data.push({
                   x: time + i * 1000,
                   y: Math.random()
