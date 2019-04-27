@@ -320,7 +320,7 @@ app.controller("myCtrl",function($scope,$http,$interval){
         console.log(response.data);
       
         $scope.name = response.data.temperature;//parseInt(response.data.temperature);
-        value = response.data.temperature;
+        value = parseInt(response.data.temperature, 10);
         $scope.heart = response.data.bpm;
         if(response.data.orientation == "BK"){ $scope.orientation = "On Back" ;}
         else if(response.data.orientation == "LS"){ $scope.orientation = "On Leftside" ;}
