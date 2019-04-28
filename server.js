@@ -6,6 +6,7 @@ const path = require("path");
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var logg = [];
+var info = "";
 var rpm = require("./Records.js");
 var csv =  require('fast-csv');
 var ws = fs.createWriteStream('datalog.csv');
@@ -169,8 +170,9 @@ col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+r
         } );
 
 
-  logg.push("Date/Time "+new Date().toISOString() + " Temperature ="+req.body.temperature+" BPM = "+req.body.bpm+" Orientation = "+req.body.orientation
-  );
+  info = "Date/Time "+new Date().toISOString() + " Temperature ="+req.body.temperature+" BPM = "+req.body.bpm+" Orientation = "+req.body.orientation
+  
+
   
   var col2 = db.collection('data');
 
@@ -184,20 +186,24 @@ col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+r
     
 }
 
+
+setInterval(function () { 
+  logg.push(info); 
+}, 1000); 
+
+
 app.get('/tajay/all', function(req, res){
   var col4 = db.collection('data');
   col4.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
 app.get('/logs', function(req, res){
-      res.json(logg);
-
-  
+      res.json(logg); 
 });  
-// col7.find({name:"real"},function(err, docs) {
-//   //console.log('this fires after the post find hook');
-//   res.json(docs);
-// });
+
+app.get('/clearlogs', function(req, res){
+  logg = []; 
+}); 
 
 app.get('/values', function(req, res){
   var col5 = db.collection('data');
