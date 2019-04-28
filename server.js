@@ -163,12 +163,13 @@ function espPost(req, res)  //make them write most of this
 // });
 
 
+var col6 = db.collection('log');
+// Create a document with request IP and current time of request
+col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+req.body.temperature+" BPM = "+req.body.bpm+" Orientation = "+req.body.orientation
+        } );
 
 
-
-  var successMessage = {
-    success:true
-  };
+  
   
   var col2 = db.collection('data');
 
@@ -185,7 +186,7 @@ function espPost(req, res)  //make them write most of this
 }
 
 app.get('/tajay/all', function(req, res){
-  var col4 = db.collection('data');
+  var col4 = db.collection('log');
   col4.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
