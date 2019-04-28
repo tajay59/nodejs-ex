@@ -190,10 +190,14 @@ app.get('/tajay/all', function(req, res){
   col4.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
-// app.get('/all', function(req, res){
-//   var col7 = db.collection('log');
-//   col7.find({},function(err,docs){   res.json(docs);}); //res.send('new hello world');
-// });  
+app.get('/all', function(req, res){
+  var col7 = db.collection('log');
+  
+  col7.find(function(err, docs) {
+    console.log('this fires after the post find hook');
+    res.json(docs);
+  });
+});  
 
 app.get('/values', function(req, res){
   var col5 = db.collection('data');
