@@ -190,7 +190,7 @@ app.get('/tajay/all', function(req, res){
   col4.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
-app.get('/all', function(req, res){
+app.get('/logs', function(req, res){
   var col7 = db.collection('log');
   
   col7.find({name:"real"},function(err, docs) {
