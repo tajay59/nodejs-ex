@@ -18,6 +18,45 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <style>
+  .button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 .w3-row-padding img {margin-bottom: 12px}
 /* Set the width of the sidebar to 120px */
@@ -141,7 +180,7 @@ body  {
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class='fas fa-procedures' style='font-size:36px'></i></div>
+        <div class="w3-left"><i class="fas fa-procedures w3-xxxlarge" ></i></div>
         <div class="w3-right">
           <h3 ng-bind="orientation">50</h3>
         </div>
@@ -151,7 +190,8 @@ body  {
     </div>
   </div>
 
-<!-- <div id="container" style="height: 400px; " class="w3-container w3-card w3-white w3-round w3-margin"></div> -->
+<div id="container" style="height: 400px; " class="w3-container w3-card w3-white w3-round w3-margin"><button class="button" style="vertical-align:left" onclick="myFunction()"><span>Show  </span></button><button class="button" style="vertical-align:right" onclick="myFunction1()"><span>Hide </span></button><p id="demo"></p>
+</div>
 <div id="container1" class="w3-container w3-card w3-white w3-round w3-margin"></div> 
 
 
@@ -294,7 +334,14 @@ body  {
 
 <!-- src = "https://raw.githubusercontent.com/tajay59/nodejs-ex/master/views/JS.js"    -->
 <script   > 
-  
+  function myFunction() {
+  document.getElementById("demo").innerHTML = "Before";
+}
+
+function myFunction1() {
+  document.getElementById("demo").innerHTML = "";
+}
+
 var value = 0;
 var app = angular.module("myApp1",[]);
 
