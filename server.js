@@ -192,7 +192,7 @@ app.get('/tajay/all', function(req, res){
 
 app.get('/all', function(req, res){
   var col7 = db.collection('log');
-  col7.find(function(err,docs){   res.json(docs);}); //res.send('new hello world');
+  col7.find({},function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
 app.get('/values', function(req, res){
