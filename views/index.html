@@ -334,14 +334,8 @@ body  {
 
 <!-- src = "https://raw.githubusercontent.com/tajay59/nodejs-ex/master/views/JS.js"    -->
 <script   > 
-  function myFunction() {
-  document.getElementById("demo").innerHTML = "Before";
-}
 
-function myFunction1() {
-  document.getElementById("demo").innerHTML = "";
-}
-
+var all = "";
 var value = 0;
 var app = angular.module("myApp1",[]);
 
@@ -354,9 +348,6 @@ app.controller("myCtrl1",function($scope,$http,$interval){
       $http.get("/tajay/all")
       .then(function(response) {
         //console.log(response.data);
-        
-        
-      
         $scope.name = response.data.temperature;//parseInt(response.data.temperature);
         value = parseInt(response.data.temperature, 10);
         $scope.heart = response.data.bpm;
@@ -364,13 +355,19 @@ app.controller("myCtrl1",function($scope,$http,$interval){
         else if(response.data.orientation == "LS"){ $scope.orientation = "On Leftside" ;}
         else if(response.data.orientation == "RS"){ $scope.orientation = "On Rightside" ;}
         else{$scope.orientation = "On Front"; }
+    
+      });        },100);
+
+      $interval(function(){
+      $http.get("/all")
+      .then(function(response) {
+        //console.log(response.data);
+        all = response.data.temperature; //parseInt(response.data.temperature);
         
-         
-  
-      });
-  
-  
-    },100);
+    
+      });        },100);
+
+
 
     
   });
@@ -450,7 +447,16 @@ Highcharts.chart('container1', {
 }); 
 
 
+function myFunction() {
 
+
+    
+    document.getElementById("demo").innerHTML = all;
+  }
+  
+  function myFunction1() {
+    document.getElementById("demo").innerHTML = "";
+  }
 
   </script>
 </body>
