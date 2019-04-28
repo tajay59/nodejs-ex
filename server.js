@@ -186,8 +186,13 @@ col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+r
 }
 
 app.get('/tajay/all', function(req, res){
-  var col4 = db.collection('log');
+  var col4 = db.collection('data');
   col4.findOne({name:"real"},function(err,docs){   res.json(docs);}); //res.send('new hello world');
+});  
+
+app.get('/all', function(req, res){
+  var col7 = db.collection('log');
+  col7.find(function(err,docs){   res.json(docs);}); //res.send('new hello world');
 });  
 
 app.get('/values', function(req, res){
