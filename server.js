@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require("path");
 var bodyParser = require('body-parser');
 var fs = require('fs');
-
+var logg = [];
 var rpm = require("./Records.js");
 var csv =  require('fast-csv');
 var ws = fs.createWriteStream('datalog.csv');
@@ -169,11 +169,10 @@ col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+r
         } );
 
 
-  
+  logg.push("Date/Time "+new Date().toISOString() + " Temperature ="+req.body.temperature+" BPM = "+req.body.bpm+" Orientation = "+req.body.orientation
+  );
   
   var col2 = db.collection('data');
-
-  
 
   //console.log(req.body);
   //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
@@ -191,10 +190,8 @@ app.get('/tajay/all', function(req, res){
 });  
 
 app.get('/logs', function(req, res){
-  var col7 = db.collection('log');
-  
-  
-    res.json(col7.find());
+      res.json(logg);
+
   
 });  
 // col7.find({name:"real"},function(err, docs) {
