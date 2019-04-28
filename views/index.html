@@ -359,13 +359,13 @@ app.controller("myCtrl1",function($scope,$http,$interval){
       });        },100);
 
       $interval(function(){
-      $http.get("/all")
+      $http.get("/logs")
       .then(function(response) {
         //console.log(response.data);
         all = response.data.temperature; //parseInt(response.data.temperature);
         
     
-      });        },100);
+      });        },1000);
 
 
 
