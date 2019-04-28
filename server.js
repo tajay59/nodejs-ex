@@ -193,12 +193,14 @@ app.get('/tajay/all', function(req, res){
 app.get('/logs', function(req, res){
   var col7 = db.collection('log');
   
-  col7.findOne({name:"real"},function(err, docs) {
-    //console.log('this fires after the post find hook');
-    res.json(docs);
-  });
+  
+    res.json(col7.find());
+  
 });  
-
+// col7.find({name:"real"},function(err, docs) {
+//   //console.log('this fires after the post find hook');
+//   res.json(docs);
+// });
 
 app.get('/values', function(req, res){
   var col5 = db.collection('data');
