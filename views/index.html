@@ -81,7 +81,7 @@ body  {
     <img src="https://raw.githubusercontent.com/tajay59/nodejs-ex/master/views/jane.png" alt="Jane" class="w3-left w3-circle w3-margin-right" style="width:60px">
     
     
-    <h4 style = "text-align: left;">Taylor Hall</h4>
+    <h4 style = "text-align: left;">Jane Doe</h4>
     <div class="patient-info" style = "text-align: left;margin-left:80px;margin-top:43px;">
       <div class="line"><span>Gender     </span><span>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    :&nbsp;Female</span></div>
       <div class="line"><span>Age        </span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    :&nbsp;64</span></div>
@@ -111,7 +111,7 @@ body  {
   <div class="w3-row-padding w3-margin-bottom"  > <!-- ng-controller ="myCtrl" -->
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="far fa-envelope w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3>No Alerts</h3>
         </div>
@@ -121,7 +121,7 @@ body  {
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fas fa-temperature-low w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3 ng-bind="name">99</h3>
         </div>
@@ -131,7 +131,7 @@ body  {
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fas fa-hand-holding-heart w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3 ng-bind="heart">23</h3>
         </div>
@@ -141,7 +141,7 @@ body  {
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fas fa-procedures w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3 ng-bind="orientation">50</h3>
         </div>
@@ -311,7 +311,7 @@ app.controller("myCtrl1",function($scope,$http,$interval){
         
       
         $scope.name = response.data.temperature;//parseInt(response.data.temperature);
-        value = parseFloat(response.data.temperature, 10);
+        value = parseInt(response.data.temperature, 10);
         $scope.heart = response.data.bpm;
         if(response.data.orientation == "BK"){ $scope.orientation = "On Back" ;}
         else if(response.data.orientation == "LS"){ $scope.orientation = "On Leftside" ;}
