@@ -195,7 +195,7 @@ app.get('/logs', function(req, res){
   
   col7.find({name:"real"},function(err, docs) {
     //console.log('this fires after the post find hook');
-    res.send(docs);
+    res.json(docs);
   });
 });  
 
