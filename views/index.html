@@ -77,7 +77,7 @@ body  {
   background-position: center;
 }
 </style>
-<body class="w3-black" style="background-image:url('')repeat fixed;overflow:scroll;"   ng-cloak  ng-controller="myCtrl1">  <!--  ng-app ="myApp1" -->
+<body class="w3-black" style="background-image:url('')repeat fixed;overflow:scroll;"     ng-controller="myCtrl1">  <!--  ng-app ="myApp1" -->
 
 
   <script>
@@ -227,7 +227,7 @@ body  {
 </div>
 
 
-<div id="container1" class=" w3-container w3-card w3-white w3-round w3-margin" ></div> 
+<div id="container1" class=" w3-container w3-card w3-white w3-round w3-margin" > </div> 
 
 
   </header>
@@ -396,7 +396,7 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
 
 
 
-      $scope.products1 = ["Milk", "Bread", "Cheese"];
+      $scope.products1 = [];
 
 
     
@@ -511,16 +511,7 @@ Highcharts.chart('container1', {
 }); 
 
 
-function myFunction() {
 
-
-    
-    document.getElementById("demo").innerHTML = all;
-  }
-  
-  function myFunction1() {
-    document.getElementById("demo").innerHTML = "";
-  }
 
   </script>
 </body>
