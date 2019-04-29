@@ -383,7 +383,7 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
       $http.get("/tajay/all")
       .then(function(response) {
         //console.log(response.data);
-        $scope.name = response.data.temperature;//parseInt(response.data.temperature);
+        $scope.name = parseInt(response.data.temperature, 10);//parseInt(response.data.temperature);
         value = parseInt(response.data.temperature, 10);
         $scope.heart = response.data.bpm;
         value2 = response.data.bpm;
