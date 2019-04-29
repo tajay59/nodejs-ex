@@ -377,6 +377,8 @@ body  {
 
 var all = "";
 var value = 0;
+var value1 = "";
+var value2 = "";
 var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http,$interval){
    
 
@@ -387,10 +389,11 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
         $scope.name = response.data.temperature;//parseInt(response.data.temperature);
         value = parseInt(response.data.temperature, 10);
         $scope.heart = response.data.bpm;
-        if(response.data.orientation == "BK"){ $scope.orientation = "On Back" ;}
-        else if(response.data.orientation == "LS"){ $scope.orientation = "On Leftside" ;}
-        else if(response.data.orientation == "RS"){ $scope.orientation = "On Rightside" ;}
-        else{$scope.orientation = "On Front"; }
+        value2 = response.data.bpm;
+        if(response.data.orientation == "BK"){ $scope.orientation = "On Back" ;value1= "On Back" }
+        else if(response.data.orientation == "LS"){ $scope.orientation = "On Leftside" ;value1= "On Leftside"}
+        else if(response.data.orientation == "RS"){ $scope.orientation = "On Rightside" ;value1 = "On Rightside"}
+        else{$scope.orientation = "On Front"; value1 = "On Front"}
     
       });        },100);
 
@@ -399,7 +402,7 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
       $scope.products1 = ["Milk", "Bread", "Cheese"];
     $scope.addItem = function () {
         $scope.errortext = "";
-        $scope.products1.push(value);
+        $scope.products1.push(value+" "+value1+" "+value2);
         // if (!$scope.addMe) {$scope.products1.push($scope.addMe);}
         // if ($scope.products1.indexOf($scope.addMe) == -1) {
         //     $scope.products1.push($scope.addMe); } 
