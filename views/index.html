@@ -205,26 +205,19 @@ body  {
     </div>
   </div>
 
-<div id="container" style="height: 700px; " class="w3-container w3-card w3-white w3-round w3-margin"><button class="button" style="vertical-align:left" onclick="myFunction()"><span>Show  </span></button><button class="button" style="vertical-align:right" onclick="myFunction1()"><span>Hide </span></button><p id="demo"></p>
+<div id="container"  style=" height: 500px;" class="w3-container  w3-card w3-white w3-round w3-margin"><button class="button" style="vertical-align:left;" onclick="myFunction()"><span>Show  </span></button><button class="button" style="vertical-align:right" onclick="myFunction1()"><span>Hide </span></button><p id="demo"></p>
 
-  <div  id="container" style="height: 400px;overflow-y:auto;" class="w3-container w3-card w3-white w3-round w3-margin" > 
-  <div  ng-cloak ng-controller="myCtrl1" class="w3-card-2 w3-margin" style="max-width:400px;" >
+  <div  id="container" style=" height: 400px;overflow-y:auto;" class=" w3-white w3-round w3-margin" > 
+  <div  ng-cloak ng-controller="myCtrl1" class="w3-card-2 w3-margin"  >
     <header class="w3-container w3-light-grey w3-padding-16">
-      <h3>My Shopping List</h3>
+      <h3>Data Log History</h3>
     </header>
     <ul class="w3-ul">
       <li ng-repeat="x in products1  track by $index" class="w3-padding-16">{{x}}<span ng-click="removeItem($index)" style="cursor:pointer;" class="w3-right w3-margin-right">×</span></li>
     </ul>
     <div class="w3-container w3-light-grey w3-padding-16">
-      <div class="w3-row w3-margin-top">
-        <div class="w3-col s10">
-          <input placeholder="Add shopping items here" ng-model="addMe" class="w3-input w3-border w3-padding">
-        </div>
-        <div class="w3-col s2">
-          <button ng-click="addItem()" class="w3-btn w3-padding w3-green">Add</button>
-        </div>
-      </div>
-      <p class="w3-text-red">{{errortext}}</p>
+     
+      
     </div>
   </div>
 
@@ -232,14 +225,18 @@ body  {
 </div>
 
 </div>
-<div id="container1" class="w3-container w3-card w3-white w3-round w3-margin"></div> 
 
 
+<div id="container1" class=" w3-container w3-card w3-white w3-round w3-margin" ></div> 
 
 
   </header>
+  
 </div>
+
+
 </div>
+
 <!-- Right Here -->
 
 
@@ -377,8 +374,8 @@ body  {
 
 var all = "";
 var value = 0;
-var value1 = "";
-var value2 = "";
+var value1 = "1";
+var value2 = "2";
 var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http,$interval){
    
 
@@ -400,16 +397,23 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
 
 
       $scope.products1 = ["Milk", "Bread", "Cheese"];
-    $scope.addItem = function () {
-        $scope.errortext = "";
-        $scope.products1.push(value+" "+value1+" "+value2);
-        // if (!$scope.addMe) {$scope.products1.push($scope.addMe);}
-        // if ($scope.products1.indexOf($scope.addMe) == -1) {
-        //     $scope.products1.push($scope.addMe); } 
-        //  else {
-         
-        // }
-    }
+
+
+    
+    $interval(function(){
+      var mssg = "Date/Time :"+ new Date().toISOString()+" Temperature :"+value+" Orientation :"+value1+" BPM :"+value2;
+        
+     
+      $scope.products1.push(mssg);
+        
+    
+            },1000);
+
+
+
+
+
+
     $scope.removeItem = function (x) {
         $scope.errortext = "";    
         $scope.products1.splice(x, 1);
