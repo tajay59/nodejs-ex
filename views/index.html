@@ -395,7 +395,7 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
         else if(response.data.orientation == "RS"){ $scope.orientation = "On Rightside" ;value1 = "On Rightside"}
         else{$scope.orientation = "On Front"; value1 = "On Front"}
     
-      });        },100);
+      });        },10);
 
 
 
@@ -410,7 +410,7 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
       $scope.products1.push(mssg);
         
     
-            },1000);
+            },10000);
 
 
 
