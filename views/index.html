@@ -17,6 +17,10 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 <style>
   .button {
   display: inline-block;
@@ -26,8 +30,9 @@
   color: #FFFFFF;
   text-align: center;
   font-size: 28px;
-  padding: 20px;
-  width: 200px;
+  padding: 0px;
+  width: 150px;
+  height: 40px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -72,7 +77,17 @@ body  {
   background-position: center;
 }
 </style>
-<body class="w3-black" style="background-image:url('')repeat fixed;overflow:scroll;"   ng-app ="myApp1" ng-controller="myCtrl1">
+<body class="w3-black" style="background-image:url('')repeat fixed;overflow:scroll;"   ng-cloak  ng-controller="myCtrl1">  <!--  ng-app ="myApp1" -->
+
+
+  <script>
+
+    </script>
+
+
+
+
+
 
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
@@ -190,7 +205,32 @@ body  {
     </div>
   </div>
 
-<div id="container" style="height: 400px; " class="w3-container w3-card w3-white w3-round w3-margin"><button class="button" style="vertical-align:left" onclick="myFunction()"><span>Show  </span></button><button class="button" style="vertical-align:right" onclick="myFunction1()"><span>Hide </span></button><p id="demo"></p>
+<div id="container" style="height: 700px; " class="w3-container w3-card w3-white w3-round w3-margin"><button class="button" style="vertical-align:left" onclick="myFunction()"><span>Show  </span></button><button class="button" style="vertical-align:right" onclick="myFunction1()"><span>Hide </span></button><p id="demo"></p>
+
+  <div  id="container" style="height: 400px;overflow-y:auto;" class="w3-container w3-card w3-white w3-round w3-margin" > 
+  <div  ng-cloak ng-controller="myCtrl1" class="w3-card-2 w3-margin" style="max-width:400px;" >
+    <header class="w3-container w3-light-grey w3-padding-16">
+      <h3>My Shopping List</h3>
+    </header>
+    <ul class="w3-ul">
+      <li ng-repeat="x in products1" class="w3-padding-16">{{x}}<span ng-click="removeItem($index)" style="cursor:pointer;" class="w3-right w3-margin-right">×</span></li>
+    </ul>
+    <div class="w3-container w3-light-grey w3-padding-16">
+      <div class="w3-row w3-margin-top">
+        <div class="w3-col s10">
+          <input placeholder="Add shopping items here" ng-model="addMe" class="w3-input w3-border w3-padding">
+        </div>
+        <div class="w3-col s2">
+          <button ng-click="addItem()" class="w3-btn w3-padding w3-green">Add</button>
+        </div>
+      </div>
+      <p class="w3-text-red">{{errortext}}</p>
+    </div>
+  </div>
+
+
+</div>
+
 </div>
 <div id="container1" class="w3-container w3-card w3-white w3-round w3-margin"></div> 
 
@@ -337,11 +377,7 @@ body  {
 
 var all = "";
 var value = 0;
-var app = angular.module("myApp1",[]);
-
-
-
-app.controller("myCtrl1",function($scope,$http,$interval){
+var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http,$interval){
    
 
     $interval(function(){
@@ -358,6 +394,24 @@ app.controller("myCtrl1",function($scope,$http,$interval){
     
       });        },100);
 
+
+
+      $scope.products1 = ["Milk", "Bread", "Cheese"];
+    $scope.addItem = function () {
+        $scope.errortext = "";
+        if (!$scope.addMe) {return;}
+        if ($scope.products1.indexOf($scope.addMe) == -1) {
+            $scope.products1.push(value); } 
+         else {
+            $scope.errortext = "The item is already in your shopping list.";
+        }
+    }
+    $scope.removeItem = function (x) {
+        $scope.errortext = "";    
+        $scope.products1.splice(x, 1);
+    }
+
+
       $interval(function(){
       $http.get("/logs")
       .then(function(response) {
@@ -372,7 +426,9 @@ app.controller("myCtrl1",function($scope,$http,$interval){
     
   });
 
-
+  angular.element(function() {
+      angular.bootstrap(document, ['myApp1']);
+    });
 
 
 
