@@ -130,7 +130,8 @@ function createData(req,res){
      name:"real",
   temperature:32,
   bpm:67,
-  orientation:"On Back",      } ,console.log("Done Updating"));
+  orientation:"On Back", 
+state:2     } ,console.log("Done Updating"));
 
 }
 
@@ -166,7 +167,7 @@ function espPost(req, res)  //make them write most of this
 
 var col6 = db.collection('log');
 // Create a document with request IP and current time of request
-col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+req.body.temperature+" BPM = "+req.body.bpm+" Orientation = "+req.body.orientation
+col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+req.body.temperature+" BPM = "+req.body.bpm+" Orientation = "+req.body.orientation+" State = "+req.body.state
         } );
 
 
@@ -179,7 +180,7 @@ col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+r
   //console.log(req.body);
   //fs.writeFile('./client/log.txt','\n' +"Temperature :"+ req.body.temperature +"  Heartrate : "+ req.body.bpm + " Orientation : "+ req.body.orientation + "  Date/Time :"+ new Date().toISOString(),{flag:'a'},(err)=> {if(err){console.log(" Log file  updated"); } else{console.log("  updated")};});
   //csv.writeToStream(fs.createWriteStream("datalog.csv"),[ [req.body.temperature, req.body.bpm,req.body.orientation,new ] ],{headers:true}).pipe(ws);
-  col2.findOneAndUpdate({name:"real"},{$set:{temperature:req.body.temperature,bpm:req.body.bpm,orientation:req.body.orientation}})
+  col2.findOneAndUpdate({name:"real"},{$set:{temperature:req.body.temperature,bpm:req.body.bpm,orientation:req.body.orientation,state:req.body.state}})
   //col2.findOne({name:"real"},function(err,docs){    res.json(docs); docs.temperature = req.body.temperature; docs.bpm = req.body.bpm;   docs.orientation = req.body.orientation; docs.save(); }); //}); )
     //.then(r => res.send("Message received"));
     //console.log(values);
@@ -187,9 +188,10 @@ col6.insert({ info  : "Date/Time "+new Date().toISOString() + " Temperature ="+r
 }
 
 
-setInterval(function () { 
-  logg.push(info); 
-}, 1000); 
+setInterval(function () {
+  if(info != ""){logg.push(info); } 
+  
+}, 10000); 
 
 
 app.get('/tajay/all', function(req, res){
