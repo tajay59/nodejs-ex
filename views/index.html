@@ -167,7 +167,7 @@ body  {
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="far fa-envelope w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>No Alerts</h3>
+          <h3 ng-bind="mssg"></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Messages</h4>
@@ -387,6 +387,8 @@ var app = angular.module("myApp1",[]).controller("myCtrl1",function($scope,$http
         value = parseInt(response.data.temperature, 10);
         $scope.heart = response.data.bpm;
         value2 = response.data.bpm;
+        if(response.data.state =="2"){$scope.mssg = "No Alerts"}
+        if(response.data.state =="1"){$scope.mssg = "Emergency"}
         if(response.data.orientation == "BK"){ $scope.orientation = "On Back" ;value1= "On Back" }
         else if(response.data.orientation == "LS"){ $scope.orientation = "On Leftside" ;value1= "On Leftside"}
         else if(response.data.orientation == "RS"){ $scope.orientation = "On Rightside" ;value1 = "On Rightside"}
